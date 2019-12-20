@@ -1,0 +1,33 @@
+package com.test.web.person;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name="PERSON")
+public class Person {
+		@Id
+		@GeneratedValue
+		@Column(name="ID" , nullable=false) 
+		private Long id;
+		@Column(name="CID" , length = 64,  nullable=false) 
+		private String cid;
+		@Column(name="PWD" , length = 64,  nullable=false) 
+		private String pwd;
+		@Column(name="NAME" , length = 64,  nullable=false) 
+		private String name;
+		@Temporal(TemporalType.DATE)
+		@Column(name="BIRTHDAY" , nullable=false) 
+		private Date birthday;  //import java.util.Date;
+		
+}
