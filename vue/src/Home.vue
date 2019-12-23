@@ -40,7 +40,8 @@ export default{
 			],
 			headers: [
 				{menu : "Join", link: "/Join"},
-				{menu : "Login", link: "/login"}
+				{menu : "Login", link: "/login"},
+				{menu : "Mypage", link: "/mypage"}
 			],
     }
 		}
