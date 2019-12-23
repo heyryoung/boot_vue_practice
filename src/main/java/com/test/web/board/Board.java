@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 
 import lombok.Data;
 
-@Entity
-@Table(name = "BOARD")
 @Data
+@Entity
 @Component
+@Table(name = "BOARD")
 public class Board {
 	
 	@Id

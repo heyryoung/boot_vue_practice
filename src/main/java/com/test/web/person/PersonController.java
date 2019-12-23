@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "http://localhost:8082")
 public class PersonController {
 
 		@Autowired
 		private PersonRepository personRepository;
 		@Autowired
-		private Person person;
+		private Person resultPerson;
 		
 		@RequestMapping("/person")
 		public String index() {
@@ -33,16 +33,32 @@ public class PersonController {
 			System.out.println(String.format("UserId: %s" , person.getCid()));
 			System.out.println(String.format("pwd: %s" , person.getPwd()));
 			
-			person = personRepository.findByCidAndPwd(person.getCid(), person.getPwd());
-			if(person != null ) {
+			resultPerson = personRepository.findByCidAndPwd(person.getCid(), person.getPwd());
+			if(resultPerson != null ) {
 				System.out.println("로그인 성공");
 				map.put("result", "SUCCESS");
-				map.put("data", person);
+				map.put("data", resultPerson);
 			}else {
-				System.out.println("로그인 성공");
+				System.out.println("로그인 실패");
 				map.put("result", "FAIL");				
-				map.put("data", person);				
+				map.put("data", resultPerson);				
 			}
+			return map;
+			
+		}
+		
+		@RequestMapping("/join")
+		public HashMap<String,Object> join(@RequestBody Person person) {
+			HashMap<String,Object> map =new HashMap<>();
+			System.out.println("가입 진입 ");
+			personRepository.save(person);			
+			if(person != null ) {
+				System.out.println("가입 성공");
+				map.put("result", "SUCCESS");
+			}else {
+				System.out.println("가입 실패");
+				map.put("result", "FAIL");				
+			}   
 			return map;
 			
 		}
