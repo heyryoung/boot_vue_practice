@@ -3,7 +3,7 @@
     <form action="/examples/actions/confirmation.php" method="post">
         <h2 class="text-center">Login</h2>
         <div class="form-group has-error">
-        <input type="text" class="form-control" name="cid" placeholder="Username" required="required" v-model="user.id" >
+        <input type="text" class="form-control" name="cid" placeholder="Username" required="required" v-model="user.cid" >
         </div>
 		<div class="form-group">
             <input type="password" class="form-control" name="pwd" placeholder="Password" required="required" v-model="user.pwd" >
@@ -23,15 +23,17 @@ export default {
     return {
       context : 'http://localhost:8080/',
       result: '' ,
-      user:{id : '' , pwd: ''}
+      user:{cid : '' , pwd: ''},
+      logincId: '',
+      loginpw:''
     }
   },
 methods : {
         login() {
-            alert(`${this.user.id} ${this.user.pwd}`)
+            alert(`${this.context}`)
             let url = `${this.context}/login`
             let data = {
-              cid : this.user.id,
+              cid : this.user.cid,
               pwd : this.user.pwd
             }
             let headers = {
@@ -42,7 +44,11 @@ methods : {
             axios
             .post(url,data, headers)
             .then(res=>{
-                this.result = res.data
+              alert(res.data.result)
+              if(res.data.result ==="SUCCESS"){
+                this.result = res.data.data                
+                alert(`로그인 성공 ${this.result.cid}`);
+              }
             })
             .catch(()=>{
                 alert('AXIOS 실패')
