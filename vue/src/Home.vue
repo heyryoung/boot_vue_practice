@@ -6,6 +6,8 @@
 				<div  v-for="header of headers" :key="header.menu">
 					<router-link :to ="header.link">{{header.menu}}</router-link>
 				</div>				
+					<router-link to ="/login" v-if="person.cid === ''">Login</router-link>				
+					<router-link to ="/login" v-else  @click="logout">LogOut</router-link>				
 			</div>
 		</template>
 		<template #sidebar="sidebar">
@@ -26,6 +28,7 @@
 </template>
 <script>
 import Layout from "@/components/cmm/Layout.vue"
+import {store} from "@/store"
 export default{
 	components : {Layout},
 	data(){
@@ -40,13 +43,20 @@ export default{
 			],
 			headers: [
 				{menu : "Join", link: "/Join"},
-				{menu : "Login", link: "/login"},
 				{menu : "Mypage", link: "/mypage"}
 			],
-    }
-		}
+			person : store.state.person
+}
+	},
+methods: {
+logout (){
+              alert('로그아웃 ')
+				store.state.person = {}
+				alert(store.state.person.name)
+                this.$router.push({path:  '/'})                  
+}
 	}
-
+}
 </script>
 <style scoped>
 

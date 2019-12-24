@@ -8,6 +8,6 @@ state: {
 	offerId: '',
 	loginedCid: '',
 	loginedPwd:'',
-	person: '' 
+	person: {} 
 }
 })

@@ -32,5 +32,12 @@ public class Person {
 		@Temporal(TemporalType.DATE)
 		@Column(name="BIRTHDAY" , nullable=false) 
 		private Date birthday;  //import java.util.Date;
-		
+		@Column(name="GENDER", nullable=false)
+		private String gender; 
+		@Column(name="HAK", nullable=false)
+		private Integer hak; 
+		@Column(name="BAN", nullable=false)
+		private Integer ban; 
+		@Column(name="SCORE", nullable=false)
+		private Integer score; 
 }
