@@ -45,7 +45,9 @@ methods : {
             .post(url,data, headers)
             .then(res=>{
               if(res.data.result ==="SUCCESS"){
-                this.person = res.data.data                
+                this.person = res.data.data  
+                store.state.loginedCid = this.person.cid
+                store.state.loginedPwd = this.person.pwd
                 store.state.person = this.person
                 store.state.loginstate = true
                 alert(`로그인 성공  ${this.person.name}`);

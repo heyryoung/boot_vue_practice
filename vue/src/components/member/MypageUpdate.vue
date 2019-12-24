@@ -70,7 +70,7 @@ export default {
                 'Content-Type': 'application/json'
             }      
             axios
-            .post(url, data, headers)
+            .put(url, data, headers)
             .then(res=>{
               this.person = res.data.data
               if(res.data.result ==="SUCCESS"){
@@ -78,7 +78,7 @@ export default {
                 this.$router.push({path:  '/mypage'})
               }else{
                 alert(`수정 실패 `);                
-                this.$router.push({path:  '/join'})                        
+                this.$router.push({path:  '/join'})                 
               }
             })
             .catch(()=>{
@@ -86,11 +86,16 @@ export default {
             })             
     },
     Withdrawal(){
-           alert('withdraw from the union')
+           alert(`${store.state.loginedCid}`)
             axios
             .delete(`${this.context}/withdrawal/${store.state.loginedCid}`)
             .then(()=>{
                 alert(`success in withdrawal`)
+                store.state.loginedCid = ''
+                store.state.loginedPwd = ''
+                store.state.person = {}
+                store.state.loginstate = false                
+                this.$router.push({path:  '/login'})                        
             })
             .catch(()=>{
                 alert('AXIOS 실패')

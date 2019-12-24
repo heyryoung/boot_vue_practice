@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -66,7 +67,7 @@ public class PersonController {
 			
 		}
 		
-		@RequestMapping("/modify")
+		@PutMapping("/modify")
 		public HashMap<String,Object> modify(@RequestBody Person person) {
 			HashMap<String,Object> map =new HashMap<>();
 			personRepository.save(person);			
@@ -79,7 +80,7 @@ public class PersonController {
 
 		@DeleteMapping("/withdrawal/{cid}")
 		public void withdrawal(@PathVariable String cid) {
-
+			System.out.println(cid);
 			personRepository.delete(personRepository.findByCid(cid));
 
 		}
