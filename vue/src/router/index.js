@@ -8,6 +8,7 @@ import Write from "@/components/board/Write.vue"
 import Join from "@/components/member/Join.vue"
 import Login from "@/components/member/Login.vue"
 import Mypage from "@/components/member/Mypage.vue"
+import MypageUpdate from "@/components/member/MypageUpdate.vue"
 
 Vue.use(Router)
 export default new Router({
@@ -20,6 +21,7 @@ export default new Router({
 		{path: '/write', name: 'write', component: Write},
 		{path: '/join', name: 'join', component: Join},
 		{path: '/login', name: 'login', component: Login},
-		{path: '/mypage', name: 'mypage', component: Mypage}
+		{path: '/mypage', name: 'mypage', component: Mypage},
+		{path: '/mypageUpdate', name: 'mypageUpdate', component: MypageUpdate}
 	]	
 })

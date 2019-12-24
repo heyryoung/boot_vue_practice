@@ -2,13 +2,7 @@
 <div id="app">
 	<layout>
 		<template #header="header">
-			<div>
-				<div  v-for="header of headers" :key="header.menu">
-					<router-link :to ="header.link">{{header.menu}}</router-link>
-				</div>				
-					<router-link to ="/login" v-if="person.cid === ''">Login</router-link>				
-					<router-link to ="/login" v-else  @click="logout">LogOut</router-link>				
-			</div>
+				<component :is="whichCompo ? 'LogOutHeader' : 'LogInHeader' "></component>
 		</template>
 		<template #sidebar="sidebar">
 			<ul>
@@ -28,9 +22,11 @@
 </template>
 <script>
 import Layout from "@/components/cmm/Layout.vue"
+import LogInHeader from "@/components/cmm/LogInHeader.vue"
+import LogOutHeader from "@/components/cmm/LogOutHeader.vue" 
 import {store} from "@/store"
 export default{
-	components : {Layout},
+	components : {Layout ,LogInHeader,LogOutHeader},	
 	data(){
 		return {
 			sidebars: [
@@ -41,21 +37,17 @@ export default{
 				{menu : "Remove", link: "/remove"},
 				{menu : "Search", link: "/search"}
 			],
-			headers: [
-				{menu : "Join", link: "/Join"},
-				{menu : "Mypage", link: "/mypage"}
-			],
 			person : store.state.person
 }
 	},
-methods: {
-logout (){
-              alert('로그아웃 ')
-				store.state.person = {}
-				alert(store.state.person.name)
-                this.$router.push({path:  '/'})                  
-}
-	}
+	methods: {
+
+		},
+  computed: {
+    whichCompo () {
+		return store.state.loginstate
+    }
+  }
 }
 </script>
 <style scoped>

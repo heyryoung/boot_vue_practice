@@ -72,9 +72,7 @@ public class PersonController {
 			personRepository.save(person);			
 			System.out.println("수정 성공");
 			map.put("result", "SUCCESS");
-			Person result = personRepository.findByCidAndPwd(person.getCid(), person.getPwd());
-			result.setName("바보");
-			map.put("data",result );
+			map.put("data", personRepository.findByCidAndPwd(person.getCid(), person.getPwd()));
 			return map;
 			
 		}

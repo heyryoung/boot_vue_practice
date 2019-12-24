@@ -8,6 +8,7 @@ state: {
 	offerId: '',
 	loginedCid: '',
 	loginedPwd:'',
-	person: {} 
+	person: {} ,
+	loginstate : false
 }
 })

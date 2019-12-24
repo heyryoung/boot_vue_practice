@@ -46,17 +46,12 @@ methods : {
             .then(res=>{
               if(res.data.result ==="SUCCESS"){
                 this.person = res.data.data                
-                store.state.loginedCid = this.person.cid
-                store.state.loginedPwd = this.person.pwd
-                store.state.name = this.person.name
-                store.state.birthday = this.person.birthday
-                store.state.id = this.person.id
                 store.state.person = this.person
+                store.state.loginstate = true
                 alert(`로그인 성공  ${this.person.name}`);
                 this.$router.push({path:  '/mypage'})                 
               }else{
                 alert(`로그인 실패 `);                
-                this.$router.push({path:  '/login'})                        
               }
             })
             .catch(()=>{
