@@ -4,7 +4,7 @@
 				<div  v-for="header of headers" :key="header.menu">
 					<router-link :to ="header.link">{{header.menu}}</router-link>
 				</div>				
-                    <router-link to ="/login" @click="logout">LogOUT</router-link >                    
+                    <a href="#" @click="logout">LogOut</a>                  
 			</div>     
 </div>
 </template>
